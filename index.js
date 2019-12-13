@@ -1,11 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const Message = require("./message/model");
+const cors = require("cors");
 const Sse = require("json-sse");
 
 const messageRouterFactory = require("./message/router");
 
 const app = express();
+const corsMiddleware = cors();
+
+app.use(corsMiddleware);
 
 const port = 4000;
 

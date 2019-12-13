@@ -16,7 +16,7 @@ function factory(stream) {
 
   router.post("/message", async (request, response, next) => {
     try {
-      console.log("req body is -----> ", request.body);
+      console.log("req body is -----> ", request.bodys);
 
       const message = await Message.create(request.body);
       const string = JSON.stringify(message);

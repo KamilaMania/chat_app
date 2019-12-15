@@ -24,7 +24,12 @@ app.get("/", (request, response) => {
 app.get("/stream", async (request, response, next) => {
   try {
     const messages = await Message.findAll(); //get array of database
-    const string = JSON.stringify(messages); //return db- change array to strings
+    const action = {
+      type: "ALL_MESSAGES",
+      payload: messages
+    };
+
+    const string = JSON.stringify(action); //return db- change array to strings
 
     stream.updateInit(string); // send a string to client ,preparing string to be send to the client
     stream.init(request, response); // connecting user to the stream

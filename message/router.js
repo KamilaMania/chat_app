@@ -16,10 +16,16 @@ function factory(stream) {
 
   router.post("/message", async (request, response, next) => {
     try {
-      console.log("req body is -----> ", request.bodys);
+      console.log("req body is -----> ", request.body);
 
       const message = await Message.create(request.body);
-      const string = JSON.stringify(message);
+
+      const action = {
+        type: "NEW_MESSAGE",
+        payload: message
+      };
+
+      const string = JSON.stringify(action);
       stream.send(string);
 
       response.send(message);
